@@ -185,8 +185,8 @@ object JoinApp {
         Row.fromSeq(p.split(','.toString,-1))
       })
       val joinDF_final= sqlContext.applySchema(rowRDD, schema)
-      // val outputDF = joinDF_final.select(selectVarArr.head, selectVarArr.tail: _*) 
-
+      // val outputDF = joinDF_final.select(selectVarArr.head, selectVarArr.tail: _*) // only for unique columns  
+      //val outputDF = joinDF.select()
       val outputRDD = outputDF.rdd.map{case(x)=>x.toString.stripSuffix("]").stripPrefix("[")}
       val date = new Date();
       val formatter = new SimpleDateFormat("MMddyyyy_hhmmss")
